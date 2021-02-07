@@ -133,6 +133,7 @@ section {
     display: flex;
     justify-content: space-around;
     align-items: center;
+    padding: 1rem 0;
 
 }
 
@@ -145,6 +146,11 @@ section {
     padding: 0.5rem 1rem;
     margin: 0 1rem;
     box-shadow: 10px 10px 10px -5px rgba(25,42,70,0.2);
+    transition: 0.5s;
+}
+
+.skill:hover {
+    transform: translate(0,-5px);
 }
 
 .skill-icon {
@@ -184,6 +190,140 @@ section {
 .vue-style {
     color:#2e7d32;
 }
+
+.roadmap-container {
+    width: 100%;
+    margin-top: 2rem;
+}
+
+.roadmap-title-container {
+    width: 100%;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.roadmap-title {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #545e6f
+}
+
+.arrow-container {
+    display:flex
+}
+
+.slide-prev {
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.slide-prev:hover{
+    font-size: 2rem;
+    cursor: pointer;
+    color: #cfc;
+}
+.class-list {
+    display:flex;
+    list-style: none;
+    padding: 1rem 0 ;
+    margin: 0 0 0 0;
+    overflow: hidden;
+}
+.class-image {
+    max-width:240px;
+    border-radius:8px 8px 0 0;
+}
+.class-card {
+    max-width:240px;
+    box-shadow: 10px 10px 10px -5px rgba(25,42,70,0.2);
+    border-radius: 8px;
+    margin: 0 10px;
+    transition: 0.4s;
+    flex-shrink: 0;
+}
+.class-card:hover {
+    box-shadow: 10px 10px 10px 0px rgba(25,42,70,0.2);
+    transform: translate(0,-5px);
+}
+
+.class-container {
+    width: 100%;
+    padding: 0.5rem 1rem 1rem 1rem;
+}
+
+.class-skill {
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+}
+.class-type {
+    font-size: 0.9rem;
+    color: #949393;
+}
+.class-format {
+    font-size:0.9rem;
+    color: #fff;
+    background-color: #0d47a1;
+    padding:0.2rem;
+
+}
+
+.class-desc {
+    width: 100%;
+    margin-top: 0.2rem;
+}
+
+.class-title {
+    font-weight: bold;
+    color: #545e6f;
+    width:100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 0.5rem;
+}
+
+.class-detail {
+    font-size: 0.9rem;
+    color:#545e6f;
+    line-height:1.5rem;
+
+}
+
+.roadmap-desc {
+    display: visible;
+}
+
+li a:hover{
+    cursor: pointer;
+}
+
+footer {
+    border-top: 1px solid #e4e4e4;
+    background-color: #f8f9fa;
+    padding: 1rem 0;
+    margin: 1rem 0;
+}
+
+.footer-message {
+    font-weight: bold;
+    font-size: 0.9rem;
+    color:#545e6f;
+    margin-bottom: 0.3rem 0;
+}
+.footer-contact {
+    font-weight: bold;
+    font-size: 1rem;
+    color:#545e6f;
+    margin-bottom: 0.4rem;
+
+}
+.footer-copyright {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color:#545e6f;
+}
 @media only screen and (min-width: 1200px) {
     .inner {
         max-width:1200px;
@@ -192,6 +332,9 @@ section {
 
 @media only screen and (max-width: 980px) {
     .skill-container {
+        display: none;
+    }
+    .roadmap-desc {
         display: none;
     }
 }
