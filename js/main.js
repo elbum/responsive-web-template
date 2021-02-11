@@ -25,11 +25,13 @@ backtotop.addEventListener('click',moveBackToTop);
 // ----------------------------------------------------------------
 // 좌우 슬라이딩 버튼 핸들링
 const transformNext = (event) => {
+    console.log('transform-next',event)
     const slideNext = event.target;
     const slidePrev = slideNext.previousElementSibling;
 
     const classList = slideNext.parentElement.parentElement.nextElementSibling;
-    let activaLi = classList.getAttribute('data-position');
+    let activeLi = classList.getAttribute('data-position');
+    console.log('data-position = ',Number(activeLi))
     const liList = classList.getElementsByTagName('li');
 
     // 하나의 카드라도 왼쪽으로 이동했다면, 오른쪽으로 갈 수 있음.
@@ -50,12 +52,14 @@ const transformNext = (event) => {
     }
 }
 const transformPrev = (event) => {
+    console.log('transform-prev',event)
     const slidePrev = event.target;
     const slideNext = slidePrev.nextElementSibling;
 
     // ul 태그 선택
     const classList = slidePrev.parentElement.parentElement.nextElementSibling;
     let activeLi = classList.getAttribute('data-position');
+    console.log('data-position = ', Number(activeLi))
     const liList = classList.getElementsByTagName('li')
    
     /* classList.clientWidth 는 ul 태그의 실질적인 너비
@@ -71,7 +75,7 @@ const transformPrev = (event) => {
    {
        activeLi = Number(activeLi) - 260 ;
 
-       if(classList.clientWidth > (liList.length * 260 + Number(activaLi))){
+       if(classList.clientWidth > (liList.length * 260 + Number(activeLi))){
            slidePrev.style.color='#cfd8dc';
            slidePrev.classList.remove('slide-prev-hover');
            slidePrev.removeEventListener('click',transformPrev);

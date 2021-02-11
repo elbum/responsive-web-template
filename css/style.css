@@ -249,6 +249,7 @@ section {
     margin: 0 0 0 0;
     /* overflow: hidden; 이렇게 하면 slide 시 이미지 짤림*/  
     overflow: none;
+    /* overflow: hidden; */
 }
 .class-image {
     max-width:240px;
