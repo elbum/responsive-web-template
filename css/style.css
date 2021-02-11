@@ -228,6 +228,15 @@ section {
     cursor: pointer;
 }
 
+.slide-prev-hover:hover {
+    transition: transform 0.5s;
+    transform: translateX(-2px);
+}
+
+.slide-next-hover:hover {
+    transition: transform 0.5s;
+    transform: translateX(2px);
+}
 .slide-next:hover{
     font-size: 2rem;
     cursor: pointer;
@@ -238,7 +247,8 @@ section {
     list-style: none;
     padding: 1rem 0 ;
     margin: 0 0 0 0;
-    overflow: hidden;
+    /* overflow: hidden; 이렇게 하면 slide 시 이미지 짤림*/  
+    overflow: none;
 }
 .class-image {
     max-width:240px;
