@@ -293,11 +293,17 @@ section {
 .class-desc {
     width: 100%;
     margin-top: 0.2rem;
+    color:#545e6f;
+}
+
+.class-desc:hover {
+    color:#2186c4
 }
 
 .class-title {
     font-weight: bold;
-    color: #545e6f;
+    /* color: #545e6f; */  
+    color: inherit;  /* 호버시키면서 상속하게 */
     width:100%;
     white-space: nowrap;
     overflow: hidden;
@@ -307,7 +313,8 @@ section {
 
 .class-detail {
     font-size: 0.9rem;
-    color:#545e6f;
+    /* color:#545e6f; */
+    color : inherit;
     line-height:1.5rem;
 
 }
@@ -344,6 +351,20 @@ footer {
     font-weight: bold;
     font-size: 1.2rem;
     color:#545e6f;
+}
+
+ul li img:hover {
+    cursor: grab;
+}
+
+ul li img:active {
+    cursor: grabbing;
+}
+
+.news {
+    font-size:1.2rem;
+    font-weight:bold;
+    color: #fff6ae;
 }
 
 #backtotop {
@@ -395,5 +416,48 @@ footer {
     }
     .roadmap-desc {
         display: none;
+    }
+}
+
+@media only screen and (max-width:768px) {
+    .title {
+        font-size:1.6rem;
+        font-weight:bold;
+        color:#fff;
+        margin-bottom:0.8rem;
+    }
+    .message {
+        font-size:1.2rem;
+        font-weight:normal;
+        color:#fff;
+        line-height:2rem;
+    }
+    .class-skill {
+        display:none;
+    }
+}
+
+@media only screen and (max-width:480px) {
+    .title {
+        font-size:1.6rem;
+        font-weight:bold;
+        color:#fff;
+        margin-bottom:0.8rem;
+    }
+    .message {
+        font-size:1.2rem;
+        font-weight:normal;
+        color:#fff;
+        line-height:2rem;
+    }
+    /* 모바일치고는 카드가 크다.. */
+    .class-skill {
+        display:none;
+    }
+    .class-container {
+        padding:0.5rem;
+    }
+    .class-desc {
+        margin-top: 0.3rem;
     }
 }

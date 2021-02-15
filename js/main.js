@@ -112,5 +112,95 @@ for (let i=0;i<slidePrevList.length;i++) {
         arrowContainer.removeChild(slidePrevList[i].nextElementSibling);
         arrowContainer.removeChild(slidePrevList[i]);
     }
+}
+
+/*--------------------------------------------------------*/
+
+let toucstartX;
+let currentClassList;
+let currentImg;
+let currentActiveLi;
+let nowActiveLi;
+let mouseStart;
+
+function processTouchStart(event) {
+    mouseStart = true; 
+    event.preventDefault(); // 해당요소의 고유 동작 제거 (이미지 끄는거..)
+    touchstartX = event.clientX || event.touches[0].screenX;   // 터치까지 처리 
+    currentImg = event.target;
+
+    // 드래그처리
+    currentImg.addEventListener('mousemove',processTouchMove);
+    currentImg.addEventListener('mouseup',processTouchEnd);
+
+    // 모바일 터치 처리
+    currentImg.addEventListener('touchmove',processTouchMove);
+    currentImg.addEventListener('touchend',processTouchEnd);
+
+    currentClassList = currentImg.parentElement.parentElement;
+    currentActiveLi = currentClassList.getAttribute('data-position');
 
 }
+function processTouchMove(event) {
+    event.preventDefault();
+    let currentX = event.clientX || event.touches[0].screenX;   // 터치까지 처리 ;  // 현재위치
+    // 얼만큼 이동중인지//
+    nowActiveLi = Number(currentActiveLi) + (Number(currentX)-Number(touchstartX));
+
+    // 카드를 이동
+    currentClassList.style.transition = 'transform 0s linear';
+    currentClassList.style.transform = 'translateX('+String(nowActiveLi) + 'px)';
+
+}
+function processTouchEnd(event){
+    event.preventDefault();
+
+    // 마우스 이벤트로 발생한것인지
+    if (mouseStart === true) {
+        currentImg.removeEventListener('mousemove',processTouchMove); // 마우스무브 이벤트 삭제
+        currentImg.removeEventListener('mouseup',processTouchMove); // 마우스업 이벤트 삭제
+        // 모바일 터치 처리
+        currentImg.addEventListener('touchmove',processTouchMove);
+        currentImg.addEventListener('touchend',processTouchEnd);
+
+        // 다시 원래 포지션으로 돌아오기.
+        currentClassList.style.transition='transform 1s ease';
+        currentClassList.style.transform = 'translateX(0px)';
+        currentClassList.setAttribute('data-position',0);
+
+        // 좌우버튼 버튼도 초기화
+        let eachSlidePrev = currentClassList.previousElementSibling.children[1].children[0];
+        let eachSlideNext = currentClassList.previousElementSibling.children[1].children[1];
+        let eachLiList = currentClassList.getElementsByTagName('li');
+        if(currentClassList.clientWidth < (eachLiList.length*260)) {
+            eachSlidePrev.style.color='#2f3059';
+            eachSlidePrev.classList.add('slide-prev-hover');
+            eachSlidePrev.addEventListener('click',transformPrev);
+
+            eachSlideNext.style.color='#2f3059';
+            eachSlideNext.classList.remove('slide-prev-hover');
+            eachSlideNext.removeEventListener('click',transformNext);
+        } else {
+            // 카드가 ul 보다 넘치지 않으면 prev,next 삭제함.  다른코드로 완벽제어했으면 불필요.
+            const eachViewAllNode = slidePrev.parentNode;
+            eachViewAllNode.removeChild(slidePrev.nextElementSibling);
+            eachViewAllNode.removeChild(slidePrev);
+        }
+        
+        mouseStart=false;
+    }
+}
+// 특정 요소를 드래그 하다가 요소 밖에서 드래그를 끝낼 수 있으므로 이벤트 걸어줌
+window.addEventListener('dragend',processTouchEnd);
+window.addEventListener('mouseup',processTouchEnd);
+
+// 인터페이스간의 오동작을 막기위해, 카드 내의 이미지에만 드래그 인터페이스를 제공
+const classImgLists = document.querySelectorAll('ul li img');
+for (let i=0;i<classImgLists.length;i++) {
+    //해당 요소에 마우스를 눌러서 드래그를 시작.
+    classImgLists[i].addEventListener('mousedown',processTouchStart);
+    classImgLists[i].addEventListener('touchstart',processTouchStart);
+
+}
+
+// touchstartX,touchmove,touchend  모바일 이벤트
